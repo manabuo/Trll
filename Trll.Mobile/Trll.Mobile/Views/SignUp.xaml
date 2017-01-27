@@ -4,5 +4,18 @@
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="Trll.Mobile.Views.SignUp">
-  <Label Text="{Binding MainText}" VerticalOptions="Center" HorizontalOptions="Center" />
+  <StackLayout Orientation="Vertical">
+    <Label Text="Name"></Label>
+    <Entry Text="{Binding Name}"></Entry>
+    <Label Text="Email"></Label>
+    <Entry Text="{Binding Email}"></Entry>
+    <Label Text="Password"></Label>
+    <Entry Text="{Binding Password}"></Entry>
+    <StackLayout Orientation="Horizontal">
+      <Button Text="CANCEL" Command="{Binding Cancel}"></Button>
+      <Button Text="CREATE" Command="{Binding Create}"></Button>
+    </StackLayout>
+    <Button Text="SIGN UP WITH GOOGLE"></Button>
+  </StackLayout>
+
 </ContentPage>
