@@ -30,7 +30,7 @@ namespace Trll.Mobile.ViewModels
         }
 
         public DelegateCommand Cancel => DelegateCommand.FromAsyncHandler(async () => await _navigationService.GoBackAsync());
-        public DelegateCommand LogIn => DelegateCommand.FromAsyncHandler(async () => await _navigationService.NavigateAsync(nameof(Boards)));
+        public DelegateCommand LogIn => DelegateCommand.FromAsyncHandler(async () => await _navigationService.NavigateAsync(nameof(HomePage)));
     }
 
 }

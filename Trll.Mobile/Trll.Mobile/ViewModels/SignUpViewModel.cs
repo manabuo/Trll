@@ -37,6 +37,6 @@ namespace Trll.Mobile.ViewModels
             await _navigationService.GoBackAsync());
 
         public DelegateCommand Create => DelegateCommand.FromAsyncHandler(async () =>
-            await _navigationService.NavigateAsync(nameof(Boards)));
+            await _navigationService.NavigateAsync(nameof(HomePage)));
     }
 }
