@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Trll.Mobile.Views.LogIn">
+  <StackLayout Orientation="Vertical">
+    <Label Text="Email or Username"></Label>
+    <Entry Text="{Binding EmailOrUsername}"></Entry>
+    <Label Text="Password"></Label>
+    <Entry Text="{Binding Password}"></Entry>
+    <StackLayout Orientation="Horizontal">
+      <Button Text="CANCEL" Command="{Binding Cancel}"></Button>
+      <Button Text="LOG IN" Command="{Binding LogIn}"></Button>
+    </StackLayout>
+  </StackLayout>
+</ContentPage>

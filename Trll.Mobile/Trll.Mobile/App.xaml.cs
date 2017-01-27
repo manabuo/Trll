@@ -11,12 +11,15 @@ namespace Trll.Mobile
         {
             InitializeComponent();
 
-            NavigationService.NavigateAsync("MainPage?title=Hello%20from%20Xamarin.Forms");
+            NavigationService.NavigateAsync(nameof(Landing));
         }
 
         protected override void RegisterTypes()
         {
+            Container.RegisterTypeForNavigation<Landing>();
             Container.RegisterTypeForNavigation<MainPage>();
+            Container.RegisterTypeForNavigation<LogIn>();
+            Container.RegisterTypeForNavigation<SignUp>();
         }
     }
 }
