@@ -20,6 +20,7 @@ namespace Trll.Mobile
             Container.RegisterTypeForNavigation<MainPage>();
             Container.RegisterTypeForNavigation<LogIn>();
             Container.RegisterTypeForNavigation<SignUp>();
+            Container.RegisterTypeForNavigation<Boards>();
         }
     }
 }

@@ -1,6 +1,7 @@
-﻿using Prism.Commands;
+using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
+using Trll.Mobile.Views;
 
 namespace Trll.Mobile.ViewModels
 {
@@ -29,6 +30,7 @@ namespace Trll.Mobile.ViewModels
         }
 
         public DelegateCommand Cancel => DelegateCommand.FromAsyncHandler(async () => await _navigationService.GoBackAsync());
-        public DelegateCommand LogIn => DelegateCommand.FromAsyncHandler(async () => await _navigationService.GoBackAsync());
+        public DelegateCommand LogIn => DelegateCommand.FromAsyncHandler(async () => await _navigationService.NavigateAsync(nameof(Boards)));
     }
+
 }

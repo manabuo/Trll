@@ -2,9 +2,9 @@
 
 namespace Trll.Mobile.Views
 {
-    public partial class SignUp : ContentPage
+    public partial class Boards : ContentPage
     {
-        public SignUp()
+        public Boards()
         {
             InitializeComponent();
         }
