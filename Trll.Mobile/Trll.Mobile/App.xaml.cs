@@ -1,4 +1,5 @@
-﻿using Prism.Unity;
+﻿using Prism.Navigation;
+using Prism.Unity;
 using Trll.Mobile.Views;
 
 namespace Trll.Mobile
@@ -11,7 +12,7 @@ namespace Trll.Mobile
         {
             InitializeComponent();
 
-            NavigationService.NavigateAsync(nameof(HomePage));
+            NavigationService.NavigateAsync(nameof(HomePageCB));
         }
 
         protected override void RegisterTypes()
@@ -21,6 +22,7 @@ namespace Trll.Mobile
             Container.RegisterTypeForNavigation<LogIn>();
             Container.RegisterTypeForNavigation<SignUp>();
             Container.RegisterTypeForNavigation<HomePage>();
+            Container.RegisterTypeForNavigation<HomePageCB>();
         }
     }
 }
