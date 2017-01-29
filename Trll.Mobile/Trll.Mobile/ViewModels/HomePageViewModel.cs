@@ -1,12 +1,21 @@
 ﻿using System.Collections.Generic;
+using System.Windows.Input;
 using Prism.Mvvm;
 using Trll.Mobile.Presenters;
+using Xamarin.Forms;
 
 namespace Trll.Mobile.ViewModels
 {
     public class HomePageViewModel : BindableBase
     {
         public string Name => "Maximo";
+
+        public ICommand BoardSelected => new Command<BoardPresenter>(presenter =>
+        {
+            
+        });
+
+
 
         public IEnumerable<TeamPresenter> Teams => new List<TeamPresenter>
         {

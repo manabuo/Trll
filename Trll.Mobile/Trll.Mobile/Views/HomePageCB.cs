@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Prism.Commands;
+using Trll.Mobile.Behaviors;
 using Trll.Mobile.Presenters;
 using Trll.Mobile.ViewModels;
 using Xamarin.Forms;
@@ -43,16 +44,20 @@ namespace Trll.Mobile.Views
                                     {
                                         Color = Color.Accent
                                     },
-                                    new Label().Tap(l => l.SetBinding<BoardPresenter>(Label.TextProperty, b => b.BoardName))
+                                    new Label().Tap(
+                                        l => l.SetBinding<BoardPresenter>(Label.TextProperty, b => b.BoardName))
                                 }
                             }
                         }),
                         Behaviors =
                         {
-                            
+                            new ListViewSelectedItemBehavior()
+                                .Tap(behavior => behavior
+                                    .SetBinding<HomePageViewModel>(
+                                        ListViewSelectedItemBehavior.CommandProperty,
+                                        model => model.BoardSelected))
                         }
                     }.Tap(view => view.SetBinding<HomePageViewModel>(ListView.ItemsSourceProperty, model => model.Teams)),
-                    
                 }
             };
         }
