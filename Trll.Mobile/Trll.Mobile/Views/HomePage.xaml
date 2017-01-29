@@ -2,8 +2,9 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             xmlns:behaviors="clr-namespace:Trll.Mobile.Behaviors;assembly=Trll.Mobile"
              prism:ViewModelLocator.AutowireViewModel="True"
-             x:Class="Trll.Mobile.Views.HomePage">
+             x:Class="Trll.Mobile.Views.HomePage" >
   <StackLayout Orientation="Vertical">
     <StackLayout Orientation="Horizontal">
       <Label Text="{Binding Name}"></Label>
@@ -15,6 +16,9 @@
               GroupDisplayBinding="{Binding TeamName}"
               GroupShortNameBinding="{Binding TeamName}"
               ItemsSource="{Binding Teams}">
+      <ListView.Behaviors>
+        <behaviors:ListViewSelectedItemBehavior Command="{Binding BoardSelected}"/>
+      </ListView.Behaviors>
       <ListView.ItemTemplate>
         <DataTemplate>
           <ViewCell>

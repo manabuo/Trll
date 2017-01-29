@@ -12,7 +12,7 @@ namespace Trll.Mobile
         {
             InitializeComponent();
 
-            NavigationService.NavigateAsync(nameof(HomePageCB));
+            NavigationService.NavigateAsync(nameof(HomePage));
         }
 
         protected override void RegisterTypes()
@@ -22,7 +22,6 @@ namespace Trll.Mobile
             Container.RegisterTypeForNavigation<LogIn>();
             Container.RegisterTypeForNavigation<SignUp>();
             Container.RegisterTypeForNavigation<HomePage>();
-            Container.RegisterTypeForNavigation<HomePageCB>();
         }
     }
 }
