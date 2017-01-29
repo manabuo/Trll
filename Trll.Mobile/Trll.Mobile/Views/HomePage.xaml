@@ -5,30 +5,32 @@
              xmlns:behaviors="clr-namespace:Trll.Mobile.Behaviors;assembly=Trll.Mobile"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="Trll.Mobile.Views.HomePage" >
-  <StackLayout Orientation="Vertical">
-    <StackLayout Orientation="Horizontal">
-      <Label Text="{Binding Name}"></Label>
-      <Button Text="Search"></Button>
-      <Button Text="Notifications"></Button>
-      <Button Text="Menu"></Button>
-    </StackLayout>
-    <ListView IsGroupingEnabled="True"
-              GroupDisplayBinding="{Binding TeamName}"
-              GroupShortNameBinding="{Binding TeamName}"
-              ItemsSource="{Binding Teams}">
-      <ListView.Behaviors>
-        <behaviors:ListViewSelectedItemBehavior Command="{Binding BoardSelected}"/>
-      </ListView.Behaviors>
-      <ListView.ItemTemplate>
-        <DataTemplate>
-          <ViewCell>
-            <StackLayout Orientation="Horizontal">
-              <BoxView Color="Blue"></BoxView>
-              <Label Text="{Binding BoardName}"></Label>
-            </StackLayout>
-          </ViewCell>
-        </DataTemplate>
-      </ListView.ItemTemplate>
-    </ListView>
-  </StackLayout>
+  <ContentPage.Title >
+    <x:String>
+      Maximo Dominguez
+    </x:String>
+  </ContentPage.Title>
+  <ContentPage.ToolbarItems>
+    <ToolbarItem Command="{Binding Search}" Text="Search"/>
+    <ToolbarItem Command="{Binding Search}" Text="Notifications"/>
+    <ToolbarItem Command="{Binding Search}" Text="Menu"/>
+  </ContentPage.ToolbarItems>
+  <ListView IsGroupingEnabled="True"
+            GroupDisplayBinding="{Binding TeamName}"
+            GroupShortNameBinding="{Binding TeamName}"
+            ItemsSource="{Binding Teams}">
+    <ListView.Behaviors>
+      <behaviors:ListViewSelectedItemBehavior Command="{Binding BoardSelected}"/>
+    </ListView.Behaviors>
+    <ListView.ItemTemplate>
+      <DataTemplate>
+        <ViewCell>
+          <StackLayout Orientation="Horizontal">
+            <BoxView Color="Blue"></BoxView>
+            <Label Text="{Binding BoardName}"></Label>
+          </StackLayout>
+        </ViewCell>
+      </DataTemplate>
+    </ListView.ItemTemplate>
+  </ListView>
 </ContentPage>
