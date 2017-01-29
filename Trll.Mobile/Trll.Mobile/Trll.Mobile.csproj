@@ -43,7 +43,6 @@
     <Compile Include="ViewModels\HomePageViewModel.cs" />
     <Compile Include="ViewModels\LandingViewModel.cs" />
     <Compile Include="ViewModels\LogInViewModel.cs" />
-    <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\SignUpViewModel.cs" />
     <Compile Include="Presenters\TeamPresenter.cs" />
     <Compile Include="Views\HomePage.xaml.cs">
