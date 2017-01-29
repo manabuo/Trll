@@ -41,8 +41,12 @@ namespace Trll.Mobile.Behaviors
 
         private void OnListViewItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
+            if (e.SelectedItem == null)
+                return;
+
             if (Command?.CanExecute(e.SelectedItem) == true)
                 Command.Execute(e.SelectedItem);
+            ((ListView)sender).SelectedItem = null;
         }
 
         private void OnBindingContextChanged(object sender, EventArgs e)
