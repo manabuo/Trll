@@ -14,10 +14,10 @@ namespace Trll.Mobile.ViewModels
         }
 
         public DelegateCommand SignUp => DelegateCommand.FromAsyncHandler(async () =>
-            await _navigationService.NavigateAsync(nameof(Views.SignUp)));
+            await _navigationService.NavigateAsync(nameof(Views.SignUpPage)));
 
         public DelegateCommand LogIn => DelegateCommand.FromAsyncHandler(async () =>
-            await _navigationService.NavigateAsync(nameof(Views.LogIn)));
+            await _navigationService.NavigateAsync(nameof(Views.LogInPage)));
     }
 }
 

@@ -1,5 +1,7 @@
 ﻿using Prism.Unity;
+using Trll.Mobile.ViewModels;
 using Trll.Mobile.Views;
+using Xamarin.Forms;
 
 namespace Trll.Mobile
 {
@@ -11,18 +13,17 @@ namespace Trll.Mobile
         {
             InitializeComponent();
 
-            NavigationService.NavigateAsync($"{nameof(RootPage)}/{nameof(HomePage)}");
+            NavigationService.NavigateAsync($"{nameof(NavigationPage)}/{nameof(HomePage)}");
         }
 
         protected override void RegisterTypes()
         {
-            Container.RegisterTypeForNavigation<Landing>();
-            Container.RegisterTypeForNavigation<MainPage>();
-            Container.RegisterTypeForNavigation<LogIn>();
-            Container.RegisterTypeForNavigation<SignUp>();
-            Container.RegisterTypeForNavigation<HomePage>();
-            Container.RegisterTypeForNavigation<Board>();
-            Container.RegisterTypeForNavigation<RootPage>();
+            Container.RegisterTypeForNavigation<LandingPage, LandingViewModel>();
+            Container.RegisterTypeForNavigation<LogInPage,LogInViewModel>();
+            Container.RegisterTypeForNavigation<SignUpPage, SignUpViewModel>();
+            Container.RegisterTypeForNavigation<HomePage, HomeViewModel>();
+            Container.RegisterTypeForNavigation<BoardPage, BoardViewModel>();
+            Container.RegisterTypeForNavigation<NavigationPage>();
         }
     }
 }

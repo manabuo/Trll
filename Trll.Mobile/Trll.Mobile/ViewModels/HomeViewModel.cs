@@ -3,16 +3,15 @@ using System.Windows.Input;
 using Prism.Mvvm;
 using Prism.Navigation;
 using Trll.Mobile.Presenters;
-using Trll.Mobile.Views;
 using Xamarin.Forms;
 
 namespace Trll.Mobile.ViewModels
 {
-    public class HomePageViewModel : BindableBase
+    public class HomeViewModel : BindableBase
     {
         private readonly INavigationService _navigationService;
 
-        public HomePageViewModel(INavigationService navigationService)
+        public HomeViewModel(INavigationService navigationService)
         {
             _navigationService = navigationService;
         }

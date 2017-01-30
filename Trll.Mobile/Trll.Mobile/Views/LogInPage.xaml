@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
-             x:Class="Trll.Mobile.Views.LogIn">
+             x:Class="Trll.Mobile.Views.LogInPage">
   <StackLayout Orientation="Vertical">
     <Label Text="Email or Username"></Label>
     <Entry Text="{Binding EmailOrUsername}"></Entry>
