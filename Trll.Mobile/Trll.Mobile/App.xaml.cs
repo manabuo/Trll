@@ -1,5 +1,4 @@
-﻿using Prism.Navigation;
-using Prism.Unity;
+﻿using Prism.Unity;
 using Trll.Mobile.Views;
 
 namespace Trll.Mobile

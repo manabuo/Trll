@@ -38,13 +38,16 @@ namespace Trll.Mobile.ViewModels
                 {
                     new BoardPresenter
                     {
+                        Id = 1,
                         BoardName = "Shopping list"
                     },
                     new BoardPresenter
                     {
+                        Id = 2,
                         BoardName = "Car maintenance"
                     },new BoardPresenter
                     {
+                        Id = 3,
                         BoardName = "Shopping list"
                     }
                 }
@@ -56,14 +59,17 @@ namespace Trll.Mobile.ViewModels
                 {
                     new BoardPresenter
                     {
+                        Id = 4,
                         BoardName = "Tasks"
                     },
                     new BoardPresenter
                     {
+                        Id = 5,
                         BoardName = "asd"
                     },
                     new BoardPresenter
                     {
+                        Id = 6,
                         BoardName = "qwe"
                     }
                 }
