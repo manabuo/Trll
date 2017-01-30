@@ -1,4 +1,8 @@
-﻿using Prism.Unity;
+﻿using Microsoft.Practices.Unity;
+using Prism.Unity;
+using Trll.Core.Entities;
+using Trll.Core.Storage;
+using Trll.Mobile.DummyStorage;
 using Trll.Mobile.ViewModels;
 using Trll.Mobile.Views;
 using Xamarin.Forms;
@@ -24,6 +28,8 @@ namespace Trll.Mobile
             Container.RegisterTypeForNavigation<HomePage, HomeViewModel>();
             Container.RegisterTypeForNavigation<BoardPage, BoardViewModel>();
             Container.RegisterTypeForNavigation<NavigationPage>();
+
+            Container.RegisterType<IRepository<Board>, BoardRepository>();
         }
     }
 }

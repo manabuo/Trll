@@ -3,6 +3,7 @@ using System.Windows.Input;
 using Prism.Mvvm;
 using Prism.Navigation;
 using Trll.Mobile.Presenters;
+using Trll.Mobile.Views;
 using Xamarin.Forms;
 
 namespace Trll.Mobile.ViewModels
@@ -20,7 +21,7 @@ namespace Trll.Mobile.ViewModels
 
         public ICommand BoardSelected => new Command<BoardPresenter>(async presenter =>
         {
-            await _navigationService.NavigateAsync(nameof(Board), new NavigationParameters
+            await _navigationService.NavigateAsync(nameof(BoardPage), new NavigationParameters
             {
                 ["boardId"] = presenter.Id
             });
