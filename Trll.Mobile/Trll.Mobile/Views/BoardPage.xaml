@@ -10,8 +10,18 @@
     <DataTemplate>
       <ContentPage>
         <StackLayout>
-          <Label Text="{Binding Name}"></Label>
-          <ListView ItemsSource="{Binding Cards}">
+
+          <ListView ItemsSource="{Binding Cards}"
+                    Header="{Binding .}"
+                    Footer="{Binding .}">
+            <ListView.HeaderTemplate>
+              <DataTemplate>
+                <StackLayout Orientation="Horizontal">
+                  <Label Text="{Binding Name}"/>
+                  <Button Text="More" HorizontalOptions="EndAndExpand"></Button>
+                </StackLayout>
+              </DataTemplate>
+            </ListView.HeaderTemplate>
             <ListView.ItemTemplate>
               <DataTemplate>
                 <ViewCell>
@@ -21,8 +31,12 @@
                 </ViewCell>
               </DataTemplate>
             </ListView.ItemTemplate>
+            <ListView.FooterTemplate>
+              <DataTemplate>
+                <Button Text="Add Card"></Button>
+              </DataTemplate>
+            </ListView.FooterTemplate>
           </ListView>
-          <Button Text="Add Card"></Button>
         </StackLayout>
       </ContentPage>
     </DataTemplate>
