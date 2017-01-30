@@ -7,8 +7,7 @@
               Title="{Binding Name}" >
 
   <StackLayout>
-    <Label Text="{Binding Count}"></Label>
-    <ListView ItemsSource="{Binding CardList}">
+    <ListView ItemsSource="{Binding CardLists}">
       <ListView.ItemTemplate>
         <DataTemplate>
           <ViewCell>

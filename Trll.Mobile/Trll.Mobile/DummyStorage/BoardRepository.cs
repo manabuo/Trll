@@ -17,6 +17,7 @@ namespace Trll.Mobile.DummyStorage
                     new CardList
                     {
                         Id = i++,
+                        Name = $"CardList #{i}",
                         Cards = Enumerable.Range(0, 3).Select(k => new Card
                         {
                             Id = i++,

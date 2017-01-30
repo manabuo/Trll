@@ -31,10 +31,7 @@ namespace Trll.Mobile.ViewModels
             get { return _name; }
             set { SetProperty(ref _name, value); }
         }
-
-        public int Count => CardList?.Count() ?? -1;
-
-
+        
         public void OnNavigatedFrom(NavigationParameters parameters)
         { }
 
@@ -43,18 +40,14 @@ namespace Trll.Mobile.ViewModels
             Id = (int)parameters["boardId"];
             var board = _boardRepository.ById(Id);
             Name = board.Name;
-            CardList = board.Lists
-                           .FirstOrDefault()
-                           ?.Cards
-                           ?.ToList()
-                       ?? new List<Card>();
+            CardLists = board.Lists ?? Enumerable.Empty<CardList>();
         }
 
-        private IEnumerable<Card> _cardList;
-        public IEnumerable<Card> CardList
+        private IEnumerable<CardList> _cardLists;
+        public IEnumerable<CardList> CardLists
         {
-            get { return _cardList; }
-            set { SetProperty(ref _cardList, value); }
+            get { return _cardLists; }
+            set { SetProperty(ref _cardLists, value); }
         }
     }
 }

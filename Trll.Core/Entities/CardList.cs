@@ -6,5 +6,6 @@ namespace Trll.Core.Entities
     {
         public int Id { get; set; }
         public IEnumerable<Card> Cards { get; set; }
+        public string Name { get; set; }
     }
 }
