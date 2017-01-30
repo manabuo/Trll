@@ -1,4 +1,7 @@
-﻿using Prism.Mvvm;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using Prism.Mvvm;
 using Prism.Navigation;
 using Trll.Core.Entities;
 using Trll.Core.Storage;
@@ -29,6 +32,9 @@ namespace Trll.Mobile.ViewModels
             set { SetProperty(ref _name, value); }
         }
 
+        public int Count => CardList?.Count() ?? -1;
+
+
         public void OnNavigatedFrom(NavigationParameters parameters)
         { }
 
@@ -37,6 +43,18 @@ namespace Trll.Mobile.ViewModels
             Id = (int)parameters["boardId"];
             var board = _boardRepository.ById(Id);
             Name = board.Name;
+            CardList = board.Lists
+                           .FirstOrDefault()
+                           ?.Cards
+                           ?.ToList()
+                       ?? new List<Card>();
+        }
+
+        private IEnumerable<Card> _cardList;
+        public IEnumerable<Card> CardList
+        {
+            get { return _cardList; }
+            set { SetProperty(ref _cardList, value); }
         }
     }
 }

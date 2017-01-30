@@ -36,6 +36,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Entities\Board.cs" />
+    <Compile Include="Entities\CardList.cs" />
+    <Compile Include="Entities\Card.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Storage\IRepository.cs" />
   </ItemGroup>

@@ -26,9 +26,7 @@ namespace Trll.Mobile.ViewModels
                 ["boardId"] = presenter.Id
             });
         });
-
-
-
+        
         public IEnumerable<TeamPresenter> Teams => new List<TeamPresenter>
         {
             new TeamPresenter

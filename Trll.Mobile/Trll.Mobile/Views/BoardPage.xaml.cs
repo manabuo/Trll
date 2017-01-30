@@ -2,7 +2,7 @@
 
 namespace Trll.Mobile.Views
 {
-    public partial class BoardPage : ContentPage
+    public partial class BoardPage
     {
         public BoardPage()
         {

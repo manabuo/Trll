@@ -1,4 +1,5 @@
-﻿using Trll.Core.Entities;
+﻿using System.Linq;
+using Trll.Core.Entities;
 using Trll.Core.Storage;
 
 namespace Trll.Mobile.DummyStorage
@@ -7,10 +8,21 @@ namespace Trll.Mobile.DummyStorage
     {
         public Board ById(int id)
         {
+            var i = 0;
             return new Board
             {
                 Id = id,
-                Name = $"Board {id}"
+                Name = $"Board {id}",
+                Lists = Enumerable.Range(0, 3).Select(j =>
+                    new CardList
+                    {
+                        Id = i++,
+                        Cards = Enumerable.Range(0, 3).Select(k => new Card
+                        {
+                            Id = i++,
+                            Name = $"Card {i}"
+                        }).ToList()
+                    }).ToList()
             };
         }
     }
