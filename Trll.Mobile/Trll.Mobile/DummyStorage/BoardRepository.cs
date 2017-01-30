@@ -21,7 +21,7 @@ namespace Trll.Mobile.DummyStorage
                         Cards = Enumerable.Range(0, 3).Select(k => new Card
                         {
                             Id = i++,
-                            Name = $"Card {i}"
+                            Title = $"Card {i}"
                         }).ToList()
                     }).ToList()
             };

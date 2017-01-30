@@ -3,6 +3,7 @@
                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                x:Class="Trll.Mobile.Views.BoardPage"
                xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+               xmlns:custom="clr-namespace:Trll.Mobile.Views.Custom;assembly=Trll.Mobile"
                prism:ViewModelLocator.AutowireViewModel="True"
                Title="{Binding Name}"
                ItemsSource="{Binding CardLists}">
@@ -13,7 +14,8 @@
 
           <ListView ItemsSource="{Binding Cards}"
                     Header="{Binding .}"
-                    Footer="{Binding .}">
+                    Footer="{Binding .}" 
+                    HasUnevenRows="True">
             <ListView.HeaderTemplate>
               <DataTemplate>
                 <StackLayout Orientation="Horizontal">
@@ -25,9 +27,7 @@
             <ListView.ItemTemplate>
               <DataTemplate>
                 <ViewCell>
-                  <StackLayout>
-                    <Label Text="{Binding Name}"></Label>
-                  </StackLayout>
+                  <custom:CardView/>
                 </ViewCell>
               </DataTemplate>
             </ListView.ItemTemplate>

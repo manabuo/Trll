@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Trll.Mobile.Views.Custom.CardView">
+  <ContentView.Content>
+    <StackLayout Orientation="Vertical">
+      <BoxView Color="{Binding LabelColor}" IsVisible="{Binding HasLabel}"/>
+      <Label Text="{Binding Title}"></Label>
+      <StackLayout Orientation="Horizontal">
+        <Label Text="{Binding DueDate}" IsVisible="{Binding HasDueDate}"></Label>
+        <Label Text="Comment" IsVisible="{Binding HasComments}"></Label>
+        <Label Text="CL" IsVisible="{Binding HasChecklist}"></Label>
+        <Label Text="{Binding ChecklistCount}" IsVisible="{Binding HasChecklist}"></Label>
+      </StackLayout>
+      <StackLayout Orientation="Horizontal" IsVisible="{Binding HasMemebers}">
+        <Label Text="{Binding MemberName}"></Label>
+      </StackLayout>
+    </StackLayout>
+  </ContentView.Content>
+</ContentView>
+
