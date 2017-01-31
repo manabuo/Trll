@@ -1,25 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace Trll.Core.Entities
 {
     public class Card
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
 
-        public string Title { get; set; }
-        public DateTime? DueDate { get; set; }
-        public IEnumerable<CheckListItem> Checklist { get; set; }
-        public IEnumerable<User> Members { get; set; }
-    }
+        [JsonProperty("desc")]
+        public string Description { get; set; }
 
-    public class User
-    {
+        [JsonProperty("idBoard")]
+        public string BoardId { get; set; }
+
+        [JsonProperty("idList")]
+        public string ListId { get; set; }
+        
         public string Name { get; set; }
-    }
 
-    public class CheckListItem
-    {
-        public bool Checked { get; set; }
+        public Badges Badges { get; set; }
+
+        public bool DueComplete { get; set; }
+
+        public DateTime? Due { get; set; }
+
+        public IEnumerable<Label> Labels { get; set; }
+
+        [JsonProperty("idMembers")]
+        public IEnumerable<string> MemberIds { get; set; }
+
+        public IEnumerable<MemberInfo> Members { get; set; }
     }
 }

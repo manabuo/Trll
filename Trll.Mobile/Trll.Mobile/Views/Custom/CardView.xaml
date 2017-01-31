@@ -1,17 +1,38 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Trll.Mobile.Views.Custom.CardView">
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:custom="clr-namespace:Trll.Mobile.Views.Custom;assembly=Trll.Mobile"
+             x:Class="Trll.Mobile.Views.Custom.CardView">
   <ContentView.Content>
     <StackLayout Orientation="Vertical">
-      <BoxView Color="{Binding LabelColor}" IsVisible="{Binding HasLabel}"/>
-      <Label Text="{Binding Title}"></Label>
+      <Label BackgroundColor="{Binding LabelColor}" Text="{Binding LabelName}" IsVisible="{Binding HasLabel}"></Label>
+
+      <Label Text="{Binding Name}"></Label>
       <StackLayout Orientation="Horizontal">
-        <Label Text="{Binding DueDate}" IsVisible="{Binding HasDueDate}"></Label>
-        <Label Text="Comment" IsVisible="{Binding HasComments}"></Label>
-        <Label Text="CL" IsVisible="{Binding HasChecklist}"></Label>
-        <Label Text="{Binding ChecklistCount}" IsVisible="{Binding HasChecklist}"></Label>
+
+        <Label Text="Desc" IsVisible="{Binding HasDescription}"></Label>
+
+        <Label Text="C" IsVisible="{Binding HasComments}"></Label>
+        <Label Text="{Binding CommentCount}" IsVisible="{Binding HasComments}"></Label>
+
+        <Label Text="atnmt" IsVisible="{Binding HasAttachments}"></Label>
+        <Label Text="{Binding AttachmentCount}" IsVisible="{Binding HasAttachments}"></Label>
+
+        <Label Text="cl" IsVisible="{Binding HasChecklist}"></Label>
+        <Label Text="{Binding ChecklistText}" IsVisible="{Binding HasChecklist}"></Label>
+
+        <Label Text="{Binding DueDate}"
+               IsVisible="{Binding HasDueDate}"
+               BackgroundColor="{Binding DueColor}"/>
+
       </StackLayout>
       <StackLayout Orientation="Horizontal" IsVisible="{Binding HasMemebers}">
-        <Label Text="{Binding MemberName}"></Label>
+        <custom:RepeaterView ItemsSource="{Binding Members}" Orientation="Horizontal">
+          <custom:RepeaterView.ItemTemplate>
+            <DataTemplate>
+              <Label Text="{Binding Initials}"></Label>
+            </DataTemplate>
+          </custom:RepeaterView.ItemTemplate>
+        </custom:RepeaterView>
       </StackLayout>
     </StackLayout>
   </ContentView.Content>

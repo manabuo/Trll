@@ -4,33 +4,32 @@
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              xmlns:behaviors="clr-namespace:Trll.Mobile.Behaviors;assembly=Trll.Mobile"
              prism:ViewModelLocator.AutowireViewModel="True"
-             x:Class="Trll.Mobile.Views.HomePage" >
-  <ContentPage.Title >
-    <x:String>
-      Maximo Dominguez
-    </x:String>
-  </ContentPage.Title>
+             x:Class="Trll.Mobile.Views.HomePage"
+             Title="{Binding FullName}">
+
   <ContentPage.ToolbarItems>
     <ToolbarItem Command="{Binding Search}" Text="Search"/>
     <ToolbarItem Command="{Binding Search}" Text="Notifications"/>
     <ToolbarItem Command="{Binding Search}" Text="Menu"/>
   </ContentPage.ToolbarItems>
   <ListView IsGroupingEnabled="True"
-            GroupDisplayBinding="{Binding TeamName}"
-            GroupShortNameBinding="{Binding TeamName}"
-            ItemsSource="{Binding Teams}">
+            GroupDisplayBinding="{Binding DisplayName}"
+            ItemsSource="{Binding Organizations}">
+    
     <ListView.Behaviors>
       <behaviors:ListViewSelectedItemBehavior Command="{Binding BoardSelected}"/>
     </ListView.Behaviors>
+    
     <ListView.ItemTemplate>
       <DataTemplate>
         <ViewCell>
           <StackLayout Orientation="Horizontal">
-            <BoxView Color="Blue"></BoxView>
-            <Label Text="{Binding BoardName}"></Label>
+            <BoxView Color="{Binding BackgroundColor}"></BoxView>
+            <Label Text="{Binding Name}"></Label>
           </StackLayout>
         </ViewCell>
       </DataTemplate>
     </ListView.ItemTemplate>
+    
   </ListView>
 </ContentPage>

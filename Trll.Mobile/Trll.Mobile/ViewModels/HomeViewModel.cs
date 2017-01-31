@@ -1,78 +1,72 @@
-﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows.Input;
 using Prism.Mvvm;
 using Prism.Navigation;
+using Trll.Core;
+using Trll.Core.Entities;
+using Trll.Core.Services;
 using Trll.Mobile.Presenters;
 using Trll.Mobile.Views;
 using Xamarin.Forms;
 
 namespace Trll.Mobile.ViewModels
 {
-    public class HomeViewModel : BindableBase
+    public class HomeViewModel : BindableBase, INavigationAware
     {
         private readonly INavigationService _navigationService;
+        private readonly IOrganizationService _organizationService;
+        private readonly IUserProfileService _userProfileService;
 
-        public HomeViewModel(INavigationService navigationService)
+        private UserProfile _currentUserProfile;
+        private ObservableCollection<Organization> _organizations;
+
+        public HomeViewModel(
+            INavigationService navigationService,
+            IOrganizationService organizationService,
+            IUserProfileService userProfileService)
         {
             _navigationService = navigationService;
+            _organizationService = organizationService;
+            _userProfileService = userProfileService;
         }
 
-        public string Name => "Maximo";
+        public string FullName => CurrentUserProfile?.FullName ?? string.Empty;
 
-        public ICommand BoardSelected => new Command<BoardPresenter>(async presenter =>
+        public UserProfile CurrentUserProfile
+        {
+            get { return _currentUserProfile; }
+            set
+            {
+                SetProperty(ref _currentUserProfile, value);
+                OnPropertyChanged(nameof(FullName));
+            }
+        }
+
+        public ObservableCollection<Organization> Organizations
+        {
+            get { return _organizations; }
+            set { SetProperty(ref _organizations, value); }
+        }
+
+        public ICommand BoardSelected => new Command<Board>(async board =>
         {
             await _navigationService.NavigateAsync(nameof(BoardPage), new NavigationParameters
             {
-                ["boardId"] = presenter.Id
+                ["board"] = board
             });
         });
-        
-        public IEnumerable<TeamPresenter> Teams => new List<TeamPresenter>
-        {
-            new TeamPresenter
-            {
-                TeamName = "Personal",
-                TeamBoards = new List<BoardPresenter>
-                {
-                    new BoardPresenter
-                    {
-                        Id = 1,
-                        BoardName = "Shopping list"
-                    },
-                    new BoardPresenter
-                    {
-                        Id = 2,
-                        BoardName = "Car maintenance"
-                    },new BoardPresenter
-                    {
-                        Id = 3,
-                        BoardName = "Shopping list"
-                    }
-                }
-            },
-            new TeamPresenter
-            {
-                TeamName = "Work",
-                TeamBoards = new List<BoardPresenter>
-                {
-                    new BoardPresenter
-                    {
-                        Id = 4,
-                        BoardName = "Tasks"
-                    },
-                    new BoardPresenter
-                    {
-                        Id = 5,
-                        BoardName = "asd"
-                    },
-                    new BoardPresenter
-                    {
-                        Id = 6,
-                        BoardName = "qwe"
-                    }
-                }
-            },
-        };
 
+        public void OnNavigatedFrom(NavigationParameters parameters)
+        { }
+
+        public async void OnNavigatedTo(NavigationParameters parameters)
+        {
+            Organizations = await _organizationService
+                .GetOrganizationsForCurrentUser()
+                .ThenAsync(o => new ObservableCollection<Organization>(o));
+
+            CurrentUserProfile = await _userProfileService.GetCurrentUserAsync();
+        }
     }
 }

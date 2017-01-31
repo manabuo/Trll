@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             xmlns:custom="clr-namespace:Trll.Mobile.Views.Custom;assembly=Trll.Mobile"
+             x:Class="Trll.Mobile.Views.CardPage"
+             Title="{Binding Name}">
+  <StackLayout Orientation="Vertical">
+    <Entry Placeholder="Edit card description" Text="{Binding Description, Mode=TwoWay}"></Entry>
+    <StackLayout Orientation="Horizontal" IsVisible="{Binding HasMembers}">
+      <Label Text="Uico"></Label>
+      <custom:RepeaterView ItemsSource="{Binding Members}" Orientation="Horizontal">
+        <custom:RepeaterView.ItemTemplate>
+          <DataTemplate>
+            <Label Text="{Binding Initials}"></Label>
+          </DataTemplate>
+        </custom:RepeaterView.ItemTemplate>
+      </custom:RepeaterView>
+    </StackLayout>
+  </StackLayout>
+</ContentPage>

@@ -1,67 +1,60 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Linq;
 using Prism.Mvvm;
 using Prism.Navigation;
+using Trll.Core;
 using Trll.Core.Entities;
-using Trll.Core.Storage;
+using Trll.Core.Services;
 
 namespace Trll.Mobile.ViewModels
 {
     public class BoardViewModel : BindableBase, INavigationAware
     {
-        private int _id;
-        private readonly IRepository<Board> _boardRepository;
+        private readonly INavigationService _navigationService;
+        private readonly IBoardService _boardService;
 
-        public int Id
+
+        public BoardViewModel(
+            IBoardService boardService,
+            INavigationService navigationService)
         {
-            get { return _id; }
-            set { SetProperty(ref _id, value); }
+            _boardService = boardService;
+            _navigationService = navigationService;
         }
 
-        private string _name;
+        private Board _board;
 
-        public BoardViewModel(IRepository<Board> boardRepository)
+        public string Name => Board?.Name;
+
+
+        public Board Board
         {
-            _boardRepository = boardRepository;
+            get { return _board; }
+            set
+            {
+                SetProperty(ref _board, value);
+                OnPropertyChanged(nameof(Name));
+            }
         }
 
-        public string Name
+        private ObservableCollection<ListViewModel> _lists;
+
+        public ObservableCollection<ListViewModel> Lists
         {
-            get { return _name; }
-            set { SetProperty(ref _name, value); }
+            get { return _lists; }
+            set { SetProperty(ref _lists, value); }
+        }
+
+        public async void OnNavigatedTo(NavigationParameters parameters)
+        {
+            Board = parameters["board"] as Board;
+
+            Lists = await _boardService.ListsByBoardIdAsync(_board.Id)
+                .ThenAsync(lists => lists.Select(list => new ListViewModel(list, _navigationService)))
+                .ThenAsync(lists => new ObservableCollection<ListViewModel>(lists));
         }
 
         public void OnNavigatedFrom(NavigationParameters parameters)
         { }
-
-        public void OnNavigatedTo(NavigationParameters parameters)
-        {
-            Id = (int)parameters["boardId"];
-            var board = _boardRepository.ById(Id);
-            Name = board.Name;
-            CardLists = board.Lists
-                            ?.Select(list => new CardListViewModel
-                            {
-                                Id = list.Id,
-                                Name = list.Name,
-                                Cards = list.Cards.Select(card => new CardViewModel
-                                {
-                                    Title = card.Title,
-                                    DueDate = card.DueDate,
-                                    Checklist = new ObservableCollection<CheckListItem>(card.Checklist ?? Enumerable.Empty<CheckListItem>()),
-                                    Members = new ObservableCollection<User>(card.Members ?? Enumerable.Empty<User>()),
-                                    HasComments = true
-                                })
-                            })
-                        ?? Enumerable.Empty<CardListViewModel>();
-        }
-
-        private IEnumerable<CardListViewModel> _cardLists;
-        public IEnumerable<CardListViewModel> CardLists
-        {
-            get { return _cardLists; }
-            set { SetProperty(ref _cardLists, value); }
-        }
     }
 }

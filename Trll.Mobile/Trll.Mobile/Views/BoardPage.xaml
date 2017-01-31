@@ -4,18 +4,24 @@
                x:Class="Trll.Mobile.Views.BoardPage"
                xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
                xmlns:custom="clr-namespace:Trll.Mobile.Views.Custom;assembly=Trll.Mobile"
+               xmlns:behaviors="clr-namespace:Trll.Mobile.Behaviors;assembly=Trll.Mobile"
                prism:ViewModelLocator.AutowireViewModel="True"
                Title="{Binding Name}"
-               ItemsSource="{Binding CardLists}">
+               ItemsSource="{Binding Lists}">
   <CarouselPage.ItemTemplate>
     <DataTemplate>
       <ContentPage>
         <StackLayout>
-
+          <Label Text="Foo"></Label>
           <ListView ItemsSource="{Binding Cards}"
                     Header="{Binding .}"
-                    Footer="{Binding .}" 
+                    Footer="{Binding .}"
                     HasUnevenRows="True">
+
+            <ListView.Behaviors>
+              <behaviors:ListViewSelectedItemBehavior Command="{Binding CardSelected}"/>
+            </ListView.Behaviors>
+            
             <ListView.HeaderTemplate>
               <DataTemplate>
                 <StackLayout Orientation="Horizontal">
@@ -24,6 +30,7 @@
                 </StackLayout>
               </DataTemplate>
             </ListView.HeaderTemplate>
+            
             <ListView.ItemTemplate>
               <DataTemplate>
                 <ViewCell>
@@ -31,11 +38,13 @@
                 </ViewCell>
               </DataTemplate>
             </ListView.ItemTemplate>
+            
             <ListView.FooterTemplate>
               <DataTemplate>
                 <Button Text="Add Card"></Button>
               </DataTemplate>
             </ListView.FooterTemplate>
+            
           </ListView>
         </StackLayout>
       </ContentPage>
