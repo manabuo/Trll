@@ -13,23 +13,33 @@
     <ToolbarItem Command="{Binding Search}" Text="Menu"/>
   </ContentPage.ToolbarItems>
   <ListView IsGroupingEnabled="True"
-            GroupDisplayBinding="{Binding DisplayName}"
-            ItemsSource="{Binding Organizations}">
-    
+            ItemsSource="{Binding Organizations}"
+            HasUnevenRows="True"
+            SeparatorVisibility="None"
+            BackgroundColor="#FFFFFF">
+
+    <ListView.GroupHeaderTemplate>
+      <DataTemplate>
+        <ViewCell>
+          <Label Text="{Binding DisplayName}" VerticalOptions="Center" Margin="16,16,0,18"  FontAttributes="Bold" BackgroundColor="#FFFFFF"></Label>
+        </ViewCell>
+      </DataTemplate>
+    </ListView.GroupHeaderTemplate>
+
     <ListView.Behaviors>
       <behaviors:ListViewSelectedItemBehavior Command="{Binding BoardSelected}"/>
     </ListView.Behaviors>
-    
+
     <ListView.ItemTemplate>
       <DataTemplate>
         <ViewCell>
-          <StackLayout Orientation="Horizontal">
-            <BoxView Color="{Binding BackgroundColor}"></BoxView>
-            <Label Text="{Binding Name}"></Label>
+          <StackLayout Orientation="Horizontal"  BackgroundColor="#F8F9F9">
+            <BoxView Color="{Binding BackgroundColor}" Margin="16,8,16,8" HeightRequest="40" WidthRequest="40" />
+            <Label Text="{Binding Name}" VerticalOptions="Center" FontSize="Medium" BackgroundColor="#F8F9F9"></Label>
           </StackLayout>
         </ViewCell>
       </DataTemplate>
     </ListView.ItemTemplate>
-    
+
   </ListView>
 </ContentPage>
